@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Custom Files
+Soul.json
+
+# Custom Files
+ffmpeg.exe
+
+# Custom Files
+ffmpeg-20190826-0821bc4-win64-static/
+
+# Custom Files
+.vscode/
