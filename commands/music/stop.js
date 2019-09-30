@@ -8,7 +8,7 @@ module.exports = class StopCommand extends Command {
             aliases: ['stop'],
             group: 'music',
             memberName: 'stop',
-            description: 'No',
+            description: 'Stops playing and deletes the entire queue.',
         });
     }
     

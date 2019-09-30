@@ -8,7 +8,7 @@ module.exports = class HeartCommand extends Command {
             aliases: ['heart'],
             group: 'random',
             memberName: 'heart',
-            description: '',
+            description: 'Gives a big blue heart.',
         });
     }
     async run(msg) {

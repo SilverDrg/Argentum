@@ -9,7 +9,7 @@ module.exports = class PlayCommand extends Command {
             aliases: ['play'],
             group: 'music',
             memberName: 'play',
-            description: '',
+            description: 'Plays the video from the give Youtube URL.',
             args: [
                 {
                     key: 'url',

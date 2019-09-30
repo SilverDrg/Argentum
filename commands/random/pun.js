@@ -16,7 +16,7 @@ module.exports = class PunCommand extends Command {
             aliases: ['dadjoke', 'joke'],
             group: 'random',
             memberName: 'pun',
-            description: '',
+            description: 'Gives you are random pun.',
         });
     }
     async run(msg) {

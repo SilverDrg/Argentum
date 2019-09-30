@@ -31,24 +31,6 @@ client.on('message', async (msg) => {
     const args = msg.content.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if (command == "help") {
-        return msg.channel.send(
-            "```" +
-            ">help: help command. \n\n" +
-            "Music commands: \n" +
-            ">join: Joins voice channel you are currently in. \n" +
-            ">leave: Leaves current voice channel. \n" +
-            ">play (URL): Plays given URL. \n" +
-            ">skip: Skips currently playing song. \n" +
-            ">stop: Stops all songs in queue. \n" +
-            ">volume: Sets the volume of the music. \n\n" +
-            "Random commands:\n" +
-            ">heart: big heart command. \n" +
-            ">owo: Use at your own risk. \n" +
-            ">pun: Receive a random pun." +
-            "```"
-        );
-    }
     if (command == "pun") {
         let sub = await reddit.getSubreddit('Puns').getRandomSubmission().then((res) => {
             return {
@@ -95,7 +77,7 @@ client.registry
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
-        help: true,
+        help: false,
     })
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 

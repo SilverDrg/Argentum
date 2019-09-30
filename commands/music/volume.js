@@ -8,7 +8,7 @@ module.exports = class VolumeCommand extends Command {
             aliases: ['volume'],
             group: 'music',
             memberName: 'volume',
-            description: 'No',
+            description: 'Changes the volume.',
             args: [
                 {
                     key: 'volume',

@@ -8,7 +8,7 @@ module.exports = class LeaveCommand extends Command {
             aliases: ['disconnect', 'away', 'begone_thot', 'begone'],
             group: 'music',
             memberName: 'leave',
-            description: '',
+            description: 'Leaves the voice channel that it currently resides in.',
         });
     }
     async run(msg) {

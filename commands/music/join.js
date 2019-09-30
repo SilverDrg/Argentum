@@ -8,7 +8,7 @@ module.exports = class JoinCommand extends Command {
             aliases: ['join', 'enter', 'connect', 'drop_in'],
             group: 'music',
             memberName: 'join',
-            description: '',
+            description: 'Joins voice channel the user is currently in.',
         });
     }
     async run(msg) {

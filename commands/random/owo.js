@@ -20,7 +20,7 @@ module.exports = class OwOCommand extends Command {
             aliases: ['uwu'],
             group: 'random',
             memberName: 'owo',
-            description: '',
+            description: 'Use at your own risk.',
         });
     }
     async run(msg) {

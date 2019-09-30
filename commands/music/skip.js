@@ -8,7 +8,7 @@ module.exports = class SkipCommand extends Command {
             aliases: ['next'],
             group: 'music',
             memberName: 'skip',
-            description: 'TODO',
+            description: 'Skips the currently playing video.',
         });
     }
     
