@@ -73,7 +73,8 @@ client.registry
 	.registerDefaultTypes()
 	.registerGroups([
 		['music', 'Commands for playing music.'],
-		['random', 'Random commands.'],
+        ['random', 'Random commands.'],
+        ['weather', 'Commands for weather forecasts'],
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
