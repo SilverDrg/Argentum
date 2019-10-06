@@ -27,6 +27,10 @@ module.exports = class PunCommand extends Command {
                 body: res.body
             }
         });
+        //const exampleEmbed = new Discord.RichEmbed()
+        //.setTitle(sub.title)
+        //.setImage(sub.url)
+        //msg.send(exampleEmbed);
         console.log(sub);
         msg.channel.send(sub.title + "\n" + sub.url);
     }

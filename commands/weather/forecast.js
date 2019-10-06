@@ -25,15 +25,12 @@ module.exports = class HeartCommand extends Command {
             if(err){
                 return console.log(err)
             }
-            else
-            {
+            else{
                 if(data.weather == null){
                     //console.log(JSON.stringify(body));
                     let { main, description } = body.weather[0];
                     let { temp, humidity } = body.main;
                     const WSpeed = body.wind.speed * 3.6;
-
-                    //msg.channel.send(data);
                     const WeatherEmbed = {
                         color: 0x0099ff,
                         title: 'Weather forecast',

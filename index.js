@@ -5,7 +5,6 @@ const config = require('./Soul.json');
 const ytdl = require('ytdl-core-discord');
 const ytdl2 = require('ytdl-core');
 const snoowrap = require('snoowrap');
-//const serverQueue = queue.get(msg.guild.id);
 const {
     CommandoClient
 } = require('discord.js-commando');
@@ -27,25 +26,9 @@ client.on('ready', () => {
 client.on('message', async (msg) => {
     if (!msg.content.startsWith(config.prefix) || msg.author.bot) return;
 
-    const serverQueue = queue.get(msg.guild.id);
     const args = msg.content.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if (command == "pun") {
-        let sub = await reddit.getSubreddit('Puns').getRandomSubmission().then((res) => {
-            return {
-                title: res.title,
-                url: res.url,
-                body: res.body
-            }
-        });
-        console.log(sub);
-        msg.channel.send(sub.title + "\n" + sub.url);
-        //const exampleEmbed = new Discord.RichEmbed()
-        //.setTitle(sub.title)
-        //.setImage(sub.url)
-        //msg.send(exampleEmbed);
-    }
     if (command == "heck") {
         return msg.reply("Heck you.")
     }
@@ -59,7 +42,7 @@ client.on('message', async (msg) => {
         return msg.reply("Silence bottom.")
     }
     if (command == "fuck") {
-        return msg.reply("This is a family friendly server, we use frick.")
+        return msg.reply("This is a family friendly server.")
     }
     if (command == "silver") {
         return msg.channel.send("He is a fabulous creator.")
