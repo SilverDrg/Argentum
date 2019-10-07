@@ -20,5 +20,6 @@ module.exports = class StopCommand extends Command {
         }
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
+        msg.channel.send("The queue has been cleared.");
     }
 };

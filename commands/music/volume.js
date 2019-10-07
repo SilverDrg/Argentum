@@ -23,5 +23,6 @@ module.exports = class VolumeCommand extends Command {
     async run(msg, { volume }) {   
         const serverQueue = msg.client.music.get(msg.guild.id);
         serverQueue.musicPlayer.setVolumeLogarithmic(volume / 100);
+        msg.channel.send("Volume has been set to " + volume);
     }
 };
