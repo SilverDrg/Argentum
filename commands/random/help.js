@@ -12,20 +12,6 @@ module.exports = class HeartCommand extends Command {
         });
     }
     async run(msg) {
-        /*return msg.channel.send("```" +
-        ">help: help command. \n\n" +
-        "Music commands: \n" +
-        ">join: Joins voice channel you are currently in. \n" +
-        ">leave: Leaves current voice channel. \n" +
-        ">play (URL): Plays given URL. \n" +
-        ">skip: Skips currently playing song. \n" +
-        ">stop: Stops all songs in queue. \n" +
-        ">volume: Sets the volume of the music. \n\n" +
-        "Random commands:\n" +
-        ">heart: big heart command. \n" +
-        ">owo: Use at your own risk. \n" +
-        ">pun: Receive a random pun." +
-        "```");*/
         const WeatherEmbed = {
             color: 0x0099ff,
             title: 'Help',
@@ -40,10 +26,6 @@ module.exports = class HeartCommand extends Command {
                 url: 'https://drive.google.com/uc?export=view&id=1e_-UH08vuK07EcqIWFVGv_OUapBtfEwx',
             },
             fields: [
-                /*{
-                    name: 'Help',
-                    value: '>help: Receive help.',
-                },*/
                 {
                     name: '\u150b',
                     value: '\u150b',

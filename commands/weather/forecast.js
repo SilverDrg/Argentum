@@ -27,7 +27,6 @@ module.exports = class HeartCommand extends Command {
             }
             else{
                 if(data.weather == null){
-                    //console.log(JSON.stringify(body));
                     let { main, description } = body.weather[0];
                     let { temp, humidity } = body.main;
                     const WSpeed = body.wind.speed * 3.6;
