@@ -12,6 +12,7 @@ module.exports = class JoinCommand extends Command {
         });
     }
     async run(msg) {
-        if (!msg.guild.voiceConnection) await msg.member.voiceChannel.join();
+        if (!msg.guild.voiceConnection) {await msg.member.voiceChannel.join();}
+        //else { msg.guild.reply("You need to be connected in a voice chat.");}
     }
 };
