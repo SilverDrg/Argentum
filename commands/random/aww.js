@@ -9,10 +9,6 @@ const reddit = new snoowrap({
     password: config.reddit.password
 });
 
-function random(low, high) {
-    return Math.random() * (high - low) + low
-}
-
 module.exports = class OwOCommand extends Command {
     constructor(client) {
         super(client, {

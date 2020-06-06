@@ -16,10 +16,6 @@ const client = new CommandoClient({
 });
 client.music = new Map();
 
-function random(low, high) {
-    return Math.random() * (high - low) + low
-}
-
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -42,10 +38,10 @@ client.on('message', async (msg) => {
         return msg.reply("Silence bottom.")
     }
     if (command == "fuck") {
-        return msg.reply("This is a family friendly server.")
+        return msg.reply("Demonetized.")
     }
     if (command == "silver") {
-        return msg.channel.send("He is a fabulous creator.")
+        return msg.channel.send("Better than gold.")
     }
     if (command == "ping") {
         msg.reply("Pong!")
@@ -55,6 +51,7 @@ client.on('message', async (msg) => {
 client.registry
 	.registerDefaultTypes()
 	.registerGroups([
+        ['games', 'Commands for playing simple games'],
 		['music', 'Commands for playing music.'],
         ['random', 'Random commands.'],
         ['weather', 'Commands for weather forecasts'],

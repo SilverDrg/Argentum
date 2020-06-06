@@ -17,6 +17,6 @@ module.exports = class HeartCommand extends Command {
         });
     }
     async run(msg) {
-        return msg.channel.send(sum(10, 20));
+        msg.channel.send(sum(10, 20));
     }
 };
