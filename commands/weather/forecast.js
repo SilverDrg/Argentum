@@ -5,7 +5,7 @@ const request = require('request');
 const OWKey = config.OpenWeather.OWkey;
 var data = '';
 
-module.exports = class HeartCommand extends Command {
+module.exports = class WeatherCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'weather',

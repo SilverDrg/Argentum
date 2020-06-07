@@ -12,7 +12,7 @@ module.exports = class HeartCommand extends Command {
         });
     }
     async run(msg) {
-        const WeatherEmbed = {
+        const HelpEmbed = {
             color: 0x0099ff,
             title: 'Help',
             url: '',
@@ -38,7 +38,7 @@ module.exports = class HeartCommand extends Command {
                     '>skip: Skips the music currently playing. \n' +
                     '>stop: Stops playing and deletes the queue. \n' +
                     '>volume: Set the play volume (from 1 to 100).',
-                    inline: true,
+                    inline: false,
                 },
                 {
                     name: 'Random',
@@ -46,12 +46,12 @@ module.exports = class HeartCommand extends Command {
                     '>aww: Responds with an random image of animals. \n' +
                     '>heart: Responds with a blue heart. \n' +
                     '>owo: Use at your own risk.',
-                    inline: true,
+                    inline: false,
                 },
                 {
                     name: 'Weather',
                     value: '>weather <city>: Responds with the last current weather for the given city ',
-                    inline: true,
+                    inline: false,
                 },
             ],
             image: {
@@ -63,7 +63,7 @@ module.exports = class HeartCommand extends Command {
                 icon_url: '',
             },
         };
-        return msg.channel.send({ embed: WeatherEmbed});
+        return msg.channel.send({ embed: HelpEmbed});
         
     }
 };
