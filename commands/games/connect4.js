@@ -2,72 +2,36 @@ const {Command} = require('discord.js-commando');
 const snoowrap = require('snoowrap');
 const config = require('../../Soul.json');
 
-function checkWinner(connect4Array, row, column, circle) {
-    console.log(`row:  ${row}, column: ${column}, circle: ${circle}`);
-    if(row < 2){
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column] == circle && connect4Array[row+2][column] == circle && connect4Array[row+3][column] == circle)
-            return true;
-    }
-    if(row > 2) {
-        if(connect4Array[row][column] == circle && connect4Array[row-1][column] == circle && connect4Array[row-2][column] == circle && connect4Array[row-3][column] == circle)
-            return true;
-    }
-    if(row < 3) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column] == circle && connect4Array[row+2][column] == circle && connect4Array[row-1][column] == circle)
-            return true;
-    }
-    if(row > 1 && row < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column] == circle && connect4Array[row-1][column] == circle && connect4Array[row-2][column] == circle)
-            return true;
-    }
-    if(row < 2 && column < 2) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column+1] == circle && connect4Array[row+2][column+2] == circle && connect4Array[row+3][column+3] == circle)
-            return true;
-    }
-    if(row < 2 && column > 2 && column < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column-1] == circle && connect4Array[row+2][column-2] == circle && connect4Array[row+3][column-3] == circle)
-            return true;
-    }
-    if(row > 1 && row < 4 && column < 1) {
-        if(connect4Array[row][column] == circle && connect4Array[row-1][column+1] == circle && connect4Array[row-2][column+2] == circle && connect4Array[row+3][column+3] == circle)
-            return true;
-    }
-    if(row > 2 && row < 4 && column > 1 && column < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row-1][column-1] == circle && connect4Array[row-2][column-2] == circle && connect4Array[row-3][column-3] == circle)
-            return true;
-    }
-    if(row < 3 && column < 1) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column+1] == circle && connect4Array[row+2][column+2] == circle && connect4Array[row-1][column-1] == circle)
-            return true;
-    }
-    if(row < 3 && column > 1 && column < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column-1] == circle && connect4Array[row+2][column-2] == circle && connect4Array[row-1][column+1] == circle)
-            return true;
-    }
-    if(row > 1 && row < 4 && column > 0 && column < 3) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column-1] == circle && connect4Array[row-1][column+1] == circle && connect4Array[row-2][column+2] == circle)
-            return true;
-    }
-    if(row > 1 && row < 4 && column > 1 && column < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row+1][column+1] == circle && connect4Array[row-1][column-1] == circle && connect4Array[row-2][column-2] == circle)
-            return true;
-    }
-    if(column < 2) {
-        if(connect4Array[row][column] == circle && connect4Array[row][column+1] == circle && connect4Array[row][column+2] == circle && connect4Array[row][column+3] == circle)
-            return true;
-    }
-    if(column > 3) {
-        if(connect4Array[row][column] == circle && connect4Array[row][column-1] == circle && connect4Array[row][column-2] == circle && connect4Array[row][column-3] == circle)
-            return true;
-    }
-    if(column > 0 && column < 3) {
-        if(connect4Array[row][column] == circle && connect4Array[row][column+1] == circle && connect4Array[row][column+2] == circle && connect4Array[row][column-1] == circle)
-            return true;
-    }
-    if(column > 1 && column < 4) {
-        if(connect4Array[row][column] == circle && connect4Array[row][column+1] == circle && connect4Array[row][column-1] == circle && connect4Array[row][column-2] == circle)
-            return true;
-    }
+function checkLine(a,b,c,d) {
+    // Check first cell non-zero and all cells match
+    return ((a != ':white_circle:') && (a ==b) && (a == c) && (a == d));
+}
+
+function checkWinner(bd) {
+    // Check down
+    for (r = 0; r < 2; r++)
+        for (c = 0; c < 7; c++)
+            if (checkLine(bd[r][c], bd[r+1][c], bd[r+2][c], bd[r+3][c]))
+                return true;
+
+    // Check right
+    for (r = 0; r < 5; r++)
+        for (c = 0; c < 4; c++)
+            if (checkLine(bd[r][c], bd[r][c+1], bd[r][c+2], bd[r][c+3]))
+                return true;
+
+    // Check down-right
+    for (r = 0; r < 2; r++)
+        for (c = 0; c < 4; c++)
+            if (checkLine(bd[r][c], bd[r+1][c+1], bd[r+2][c+2], bd[r+3][c+3]))
+                return true;
+
+    // Check down-left
+    for (r = 3; r < 5; r++)
+        for (c = 0; c < 4; c++)
+            if (checkLine(bd[r][c], bd[r-1][c+1], bd[r-2][c+2], bd[r-3][c+3]))
+                return true;
+
     return false;
 }
 
@@ -121,25 +85,27 @@ module.exports = class OwOCommand extends Command {
             const str = chosenArea.values().next().value.toString();
             const args = str.split('');
 
-            if(player % 2 == 0) {
-                console.log(`area value:  ${rowCount[args[0]-1]}`);
-                if(rowCount[args[0]-1] >= 0) {
-                    connect4Array[rowCount[args[0]-1]][args[0]-1] = ':blue_circle:';
-                    rowCount[args[0]-1] -= 1;
-                    console.log(`row2: ${rowCount[args[0]-1]}`);
+            if(!isNaN(args[0]))  {
+                if(player % 2 == 0) {
+                    console.log(`area value:  ${rowCount[args[0]-1]}`);
+                    if(rowCount[args[0]-1] >= 0) {
+                        connect4Array[rowCount[args[0]-1]][args[0]-1] = ':blue_circle:';
+                        rowCount[args[0]-1] -= 1;
+                        console.log(`row2: ${rowCount[args[0]-1]}`);
+                    } else {
+                        msg.channel.send("This column is full.");
+                        falseMove = true;
+                    }
                 } else {
-                    msg.channel.send("This column is full.");
-                    falseMove = true;
-                }
-            } else {
-                console.log(`area value:  ${rowCount[args[0]-1]}`);
-                if(rowCount[args[0]-1] >= 0) {
-                    connect4Array[rowCount[args[0]-1]][args[0]-1] = ':red_circle:';
-                    rowCount[args[0]-1] -= 1;
-                    console.log(`row: ${rowCount[args[0]-1]}`);
-                } else {
-                    msg.channel.send("This column is full.");
-                    falseMove = true;
+                    console.log(`area value:  ${rowCount[args[0]-1]}`);
+                    if(rowCount[args[0]-1] >= 0) {
+                        connect4Array[rowCount[args[0]-1]][args[0]-1] = ':red_circle:';
+                        rowCount[args[0]-1] -= 1;
+                        console.log(`row: ${rowCount[args[0]-1]}`);
+                    } else {
+                        msg.channel.send("This column is full.");
+                        falseMove = true;
+                    }
                 }
             }
             
@@ -167,8 +133,8 @@ module.exports = class OwOCommand extends Command {
 
             if(!falseMove) {
                 player++; 
-                falseMove = false
             }
+            falseMove = false
         }
         //msg.channel.send('Tick-tack-toe is a work in progress.');
     }

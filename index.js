@@ -5,9 +5,7 @@ const config = require('./Soul.json');
 const ytdl = require('ytdl-core-discord');
 const ytdl2 = require('ytdl-core');
 const snoowrap = require('snoowrap');
-const {
-    CommandoClient
-} = require('discord.js-commando');
+const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 
 const client = new CommandoClient({
@@ -20,9 +18,9 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 client.on('message', async (msg) => {
-    if (!msg.content.startsWith(config.prefix) || msg.author.bot) return;
+    if (!msg.content.startsWith(config.discord.prefix) || msg.author.bot) return;
 
-    const args = msg.content.slice(config.prefix.length).split(/ +/);
+    const args = msg.content.slice(config.discord.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (command == "heck") {

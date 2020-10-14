@@ -69,21 +69,23 @@ module.exports = class OwOCommand extends Command {
 
             const str = chosenArea.values().next().value.toString();
             const args = str.split('');
-            if(player % 2 == 0) {
-                if(args[1] == 'A') {
-                    ticktacktoeArray[args[0]-1][0] = ':regional_indicator_x:';
-                } else if (args[1] == 'B') {
-                    ticktacktoeArray[args[0]-1][1] = ':regional_indicator_x:';
-                } else if(args[1] == 'C') {
-                    ticktacktoeArray[args[0]-1][2] = ':regional_indicator_x:';
-                }
-            } else {
-                if(args[1] == 'A') {
-                    ticktacktoeArray[args[0]-1][0] = ':regional_indicator_o:';
-                } else if (args[1] == 'B') {
-                    ticktacktoeArray[args[0]-1][1] = ':regional_indicator_o:';
-                } else if(args[1] == 'C') {
-                    ticktacktoeArray[args[0]-1][2] = ':regional_indicator_o:';
+            if(!isNaN(args[0])) {
+                if(player % 2 == 0) {
+                    if(args[1] == 'A') {
+                        ticktacktoeArray[args[0]-1][0] = ':regional_indicator_x:';
+                    } else if (args[1] == 'B') {
+                        ticktacktoeArray[args[0]-1][1] = ':regional_indicator_x:';
+                    } else if(args[1] == 'C') {
+                        ticktacktoeArray[args[0]-1][2] = ':regional_indicator_x:';
+                    }
+                } else {
+                    if(args[1] == 'A') {
+                        ticktacktoeArray[args[0]-1][0] = ':regional_indicator_o:';
+                    } else if (args[1] == 'B') {
+                        ticktacktoeArray[args[0]-1][1] = ':regional_indicator_o:';
+                    } else if(args[1] == 'C') {
+                        ticktacktoeArray[args[0]-1][2] = ':regional_indicator_o:';
+                    }
                 }
             }
 

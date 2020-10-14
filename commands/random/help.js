@@ -1,5 +1,7 @@
+const Discord = require('discord.js');
+const clientDisc = new Discord.Client();
 const {Command} = require('discord.js-commando');
-
+const config = require('../../Soul.json');
 
 module.exports = class HeartCommand extends Command {
     constructor(client) {
@@ -41,11 +43,21 @@ module.exports = class HeartCommand extends Command {
                     inline: false,
                 },
                 {
+                    name: 'Games',
+                    value: '>ticktacktoe: Starts a 2 player game of tick-tack-toe. \n' +
+                    'To choose an area type <1-3><A-C> after the game has begun. \n' +
+                    '>connect4: Starts a 2 player game of connect 4. \n' +
+                    'Players must choose a column <1-7> to place their dots in.',
+                    inline: false,
+                },
+                {
                     name: 'Random',
                     value: '>pun: Responds with a random pun. \n' +
                     '>aww: Responds with an random image of animals. \n' +
                     '>heart: Responds with a blue heart. \n' +
-                    '>owo: Use at your own risk.',
+                    '>owo: Use at your own risk. \n' +
+                    '>rand (optional <low> <high>): Generates a random number. \n' +
+                    '>choose <strings>: Randomly chooses one of the given strings. Strings should be separated only by empty space.',
                     inline: false,
                 },
                 {
@@ -59,8 +71,8 @@ module.exports = class HeartCommand extends Command {
             },
             timestamp: new Date(),
             footer: {
-                text: 'Please wait 1 min before using the command again.',
-                icon_url: '',
+                text: `Bot created by SilverDragon.`,
+                icon_url: 'https://drive.google.com/uc?export=view&id=10wrtvIKLqom_zCcwYPWEWwZpC-WcdV0c',
             },
         };
         return msg.channel.send({ embed: HelpEmbed});
